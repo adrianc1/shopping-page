@@ -1,5 +1,11 @@
+import BackHomeBtn from '../components/BackHomeBtn';
 const Shop = () => {
-	return <h1>this is the shop page!</h1>;
+	return (
+		<>
+			<BackHomeBtn />
+			<h1>The Shopping page!</h1>
+		</>
+	);
 };
 
 export default Shop;
