@@ -1,6 +1,7 @@
 import Home from '../pages/Home';
 import ErrorPage from '../pages/ErrorPage';
 import Shop from '../pages/Shop';
+import Cart from '../pages/Cart';
 const routes = [
 	{
 		path: '/',
@@ -11,5 +12,6 @@ const routes = [
 		path: 'shop',
 		element: <Shop />,
 	},
+	{ path: 'cart', element: <Cart /> },
 ];
 export default routes;
