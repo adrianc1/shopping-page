@@ -5,11 +5,7 @@ import Shop from './pages/Shop';
 import Cart from './pages/Cart';
 
 const App = () => {
-	return (
-		<PageLayout>
-			<Home />
-		</PageLayout>
-	);
+	return <Home />;
 };
 
 export default App;
