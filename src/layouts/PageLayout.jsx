@@ -1,9 +1,14 @@
 import { Outlet } from 'react-router-dom';
+import herobg from '../assets/ecom-hero-bg.jpg';
+
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 const PageLayout = () => {
 	return (
-		<div className="flex flex-col min-h-screen">
+		<div
+			className="flex flex-col min-h-screen bg-cover bg-center"
+			style={{ backgroundImage: `url(${herobg})` }}
+		>
 			<Navbar />
 			<main className="flex-1 flex h-full">
 				<Outlet />
