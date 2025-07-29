@@ -1,7 +1,7 @@
-import Home from '../pages/Home';
+import Home from '../pages/HomePage';
 import ErrorPage from '../pages/ErrorPage';
-import Shop from '../pages/Shop';
-import Cart from '../pages/Cart';
+import Shop from '../pages/ShopPage';
+import Cart from '../pages/CartPage';
 import PageLayout from '../layouts/PageLayout';
 const routes = [
 	{
