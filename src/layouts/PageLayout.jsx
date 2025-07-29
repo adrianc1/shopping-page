@@ -5,7 +5,7 @@ const PageLayout = () => {
 	return (
 		<div className="flex flex-col min-h-screen bg-cover bg-center">
 			<Navbar />
-			<main className="flex-1 flex h-full">
+			<main className="flex-1 flex h-full justify-center">
 				<Outlet />
 			</main>
 			<Footer />
