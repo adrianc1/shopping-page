@@ -3,14 +3,18 @@ const Card = () => {
 	const items = products;
 
 	return (
-		<ul className="grid grid-cols-4 gap-4 w-full h-[200px] ">
+		<ul className="grid grid-cols-4 gap-4 w-full ">
 			{items.map((item) => {
 				return (
-					<li className="border-2 rounded-2xl flex flex-col ">
-						<div className="prd-img-cnt flex-3 flex items-center  ">
-							<img src={item.image} alt="" className="w-full object-cover  " />
+					<li className="border-2 rounded-2xl flex flex-col h-[300px]">
+						<div className="prd-img-cnt flex-1 flex items-center justify-center overflow-hidden bg-gray-50 ">
+							<img
+								src={item.image}
+								alt=""
+								className="max-w-full max-h-full object-contain "
+							/>
 						</div>
-						<div className="prd-info flex flex-col flex-1 py-12">
+						<div className="prd-info flex flex-col flex-1 p-3">
 							<span className="truncate">{item.title}</span>
 							<span>{item.price}</span>
 							<span>{item.rating.rate}</span>
