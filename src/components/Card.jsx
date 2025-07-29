@@ -3,10 +3,10 @@ const Card = () => {
 	const items = products;
 
 	return (
-		<ul className="grid grid-cols-4 gap-4 w-full ">
+		<ul className="grid  sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full ">
 			{items.map((item) => {
 				return (
-					<li className="border-2 rounded-2xl flex flex-col h-[300px]">
+					<li className=" rounded-2xl flex flex-col h-[300px] drop-shadow-2xl max-w-full">
 						<div className="prd-img-cnt flex-1 flex items-center justify-center overflow-hidden bg-gray-50 ">
 							<img
 								src={item.image}
