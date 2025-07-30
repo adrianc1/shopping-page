@@ -4,7 +4,7 @@ import herobg from '../assets/ecom-hero-bg.jpg';
 const Home = () => {
 	return (
 		<div
-			className={`flex flex-col justify-center  items-center flex-1 border-amber-300 border-2 bg-cover bg-center`}
+			className={`flex flex-col justify-center  items-center flex-1   bg-cover bg-center`}
 			style={{ backgroundImage: `url(${herobg})` }}
 		>
 			<div>hey come in and buy our junk!</div>

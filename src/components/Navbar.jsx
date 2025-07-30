@@ -1,17 +1,17 @@
 import ViewCartBtn from './ViewCartBtn';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
 	return (
 		<nav className="flex w-full items-center justify-between px-6 py-6 text-primary font-bold bg-[#d7c19b]">
 			<span>logo</span>
 			<ul className="flex gap-4 items-center justify-center">
-				<Link to="/">
+				<NavLink to="/">
 					<li>Home</li>
-				</Link>
-				<Link to="shop">
+				</NavLink>
+				<NavLink to="shop">
 					<li>Shopping</li>
-				</Link>
+				</NavLink>
 				<ViewCartBtn />
 			</ul>
 		</nav>

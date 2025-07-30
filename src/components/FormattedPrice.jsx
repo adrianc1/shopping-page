@@ -6,7 +6,7 @@ const FormattedPrice = ({ price }) => {
 		price = price.toFixed(2);
 	}
 
-	return <div>{price}</div>;
+	return <div>${price}</div>;
 };
 
 export default FormattedPrice;
