@@ -1,6 +1,6 @@
 import Home from '../pages/HomePage';
 import ErrorPage from '../pages/ErrorPage';
-import Shop from '../pages/ShopPage';
+import ShopPage from '../pages/ShopPage';
 import Cart from '../pages/CartPage';
 import PageLayout from '../layouts/PageLayout';
 const routes = [
@@ -9,12 +9,12 @@ const routes = [
 		element: <PageLayout />,
 		errorElement: <ErrorPage />,
 		children: [
-			{ path: '/', element: <Home /> },
+			{ index: true, element: <Home /> },
 			{
-				path: 'shop',
-				element: <Shop />,
-				children: [{ path: 'cart', element: <Cart /> }],
+				path: 'shop/:id?',
+				element: <ShopPage />,
 			},
+			{ path: 'cart', element: <Cart /> },
 		],
 	},
 ];
