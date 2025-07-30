@@ -4,7 +4,7 @@ import Card from '../components/Card';
 const Shop = () => {
 	let location = useLocation();
 	return (
-		<div className="flex flex-col min-h-full gap-4">
+		<div className="w-full justify-center items-center flex flex-col min-h-full gap-4">
 			<BackHomeBtn />
 			<h1 className="text-2xl"> Shop Your Favorite Items</h1>
 			{location.pathname === '/shop/cart' ? <Outlet /> : <Card />}
