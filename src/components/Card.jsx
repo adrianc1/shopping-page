@@ -1,4 +1,5 @@
 import products from '../data/mockData';
+import FormattedPrice from './FormattedPrice';
 const Card = () => {
 	const items = products;
 
@@ -17,10 +18,10 @@ const Card = () => {
 								className="max-w-full max-h-full object-contain "
 							/>
 						</div>
-						<div className="prd-info flex flex-col flex-1 p-3 bg-white rounded-b-2xl">
-							<span className="truncate">{item.title}</span>
-							<span>{item.price}</span>
-							<span>{item.rating.rate}</span>
+						<div className="prd-info pt-8 flex flex-col flex-1 p-3 bg-white rounded-b-2xl">
+							<span className="truncate font-bold">{item.title}</span>
+							<FormattedPrice price={item.price} />
+							<span>{item.rating.rate} *</span>
 						</div>
 					</li>
 				);
