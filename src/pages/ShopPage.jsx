@@ -11,15 +11,6 @@ const ShopPage = () => {
 			<BackHomeBtn />
 			<h1 className="text-2xl"> Shop Your Favorite Items</h1>
 			{!id && <Products />}
-
-			{id &&
-				productData.map((item) => {
-					return (
-						<div className="" key={item.id}>
-							{item.id === id ? 'HELELELELEL' : 'shishisih'}
-						</div>
-					);
-				})}
 		</div>
 	);
 };

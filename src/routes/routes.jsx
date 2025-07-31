@@ -15,6 +15,7 @@ const routes = [
 				path: 'shop/:id?',
 				element: <ShopPage />,
 			},
+			{ path: 'product-page', element: <ProductPage /> },
 			{ path: 'cart', element: <Cart /> },
 		],
 	},

@@ -8,7 +8,7 @@ const Products = () => {
 		<ul className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full mx-auto justify-items-center">
 			{items.map((item) => {
 				return (
-					<Link to={`/shop/${item.id}`} key={item.id}>
+					<Link to={`/product-page`} key={item.id}>
 						<li className=" border border-gray-200 rounded-2xl flex flex-col h-[350px] drop-shadow-2xl max-w-[300px] transition delay-50 duration-300 ease-in-out hover:scale-105">
 							<div className="prd-img-cnt pt-8 flex-1 flex items-center justify-center overflow-hidden bg-gray-50 rounded-t-2xl">
 								<img
