@@ -1,6 +1,7 @@
 import products from '../data/mockData';
 import FormattedPrice from '../components/FormattedPrice';
 import QuantityIncrement from '../components/QuantityIncrement';
+import BackToShopBtn from '../components/BackToShopBtn';
 const ProductPage = ({ id }) => {
 	const item = {
 		id: 1,
@@ -16,8 +17,11 @@ const ProductPage = ({ id }) => {
 		},
 	};
 	return (
-		<div className="flex justify-center mt-8">
-			<li className=" border border-gray-200 rounded-2xl flex flex-col h-[550px] drop-shadow-2xl max-w-9/10 transition delay-50 duration-300 ease-in-out hover:scale-105">
+		<div className="flex flex-col items-center mt-4">
+			<div className="self-start ml-12 mb-4">
+				<BackToShopBtn />
+			</div>
+			<li className=" border border-gray-200 rounded-2xl flex flex-col h-[550px] drop-shadow-2xl max-w-9/10 ">
 				<div className="prd-img-cnt pt-8 flex-1 flex items-center justify-center overflow-hidden bg-gray-50 rounded-t-2xl">
 					<img
 						src={item.image}

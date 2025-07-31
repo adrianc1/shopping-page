@@ -1,5 +1,6 @@
 import products from '../data/mockData';
 import FormattedPrice from './FormattedPrice';
+import AddToCart from './AddToCart';
 import { Link } from 'react-router-dom';
 const Products = () => {
 	const items = products;
@@ -17,10 +18,12 @@ const Products = () => {
 									className="max-w-full max-h-full object-contain "
 								/>
 							</div>
-							<div className="prd-info pt-8 flex flex-col flex-1 p-3 bg-white rounded-b-2xl">
+							<div className="prd-info pt-8 gap-4 flex flex-col flex-1 p-3 bg-white rounded-b-2xl">
 								<span className="truncate font-bold">{item.title}</span>
 								<FormattedPrice price={item.price} />
-								<span>{item.rating.rate} *</span>
+								<div className="self-end flex flex-col gap-4 w-auto mr-4">
+									<AddToCart />
+								</div>
 							</div>
 						</li>
 					</Link>
