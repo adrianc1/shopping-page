@@ -2,12 +2,17 @@ import products from '../data/mockData';
 import FormattedPrice from './FormattedPrice';
 import AddToCart from './AddToCart';
 import { Link } from 'react-router-dom';
+import useAllProducts from '../hooks/useAllProducts';
+
 const Products = () => {
-	const items = products;
+	const { allProducts, error, loading } = useAllProducts();
+
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>A network error was encountered</p>;
 
 	return (
 		<ul className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full mx-auto justify-items-center">
-			{items.map((item) => {
+			{allProducts.map((item) => {
 				return (
 					<Link to={`/product-page`} key={item.id}>
 						<li className=" border border-gray-200 rounded-2xl flex flex-col h-[350px] drop-shadow-2xl max-w-[300px] transition delay-50 duration-300 ease-in-out hover:scale-105">
