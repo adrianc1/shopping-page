@@ -8,7 +8,7 @@ export function useCounter(initialValue = 1) {
 	};
 	const decrement = (e) => {
 		e.preventDefault();
-		setCount((prev) => prev - 1);
+		count !== 0 ? setCount((prev) => prev - 1) : 0;
 	};
 
 	const handleQuantityChange = (e) => {
