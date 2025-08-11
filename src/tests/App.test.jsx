@@ -1,24 +1,40 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import HomePage from '../pages/HomePage.jsx';
+import { BrowserRouter } from 'react-router-dom';
 import FormattedPrice from '../components/FormattedPrice';
-
-const prices = [{ price1: 100 }, { price2: 100.1 }, { price3: 100.11 }];
+import ShopPage from '../pages/ShopPage.jsx';
 
 describe('App component', () => {
-	it('adds decimal point and trailing zeroes to number', () => {
-		const { container } = render(<App />);
-		expect(container).toMatchSnapshot();
+	// it('adds decimal point and trailing zeroes to number', () => {
+	// 	const { container } = render(<FormattedPrice />);
+	// 	expect(container).toMatchSnapshot();
+	// });
+
+	it('renders shop now button on home page', () => {
+		render(
+			<BrowserRouter>
+				<HomePage />
+			</BrowserRouter>
+		);
+		expect(screen.getByText('Shop Now')).toBeInTheDocument();
 	});
 
-	it('renders radical rhinos after button click', async () => {
+	it('Goes to shop page on button click', async () => {
 		const user = userEvent.setup();
 
-		render(<App />);
-		const button = screen.getByRole('button', { name: 'Click Me' });
+		render(
+			<BrowserRouter>
+				<HomePage />
+			</BrowserRouter>
+		);
+		const button = screen.getByRole('button');
 
 		await user.click(button);
 
-		expect(screen.getByRole('heading').textContent).toMatch(/radical rhinos/i);
+		expect(screen.getByRole('heading').textContent).toMatch(
+			/Shop Your Favorite Items/i
+		);
 	});
 });

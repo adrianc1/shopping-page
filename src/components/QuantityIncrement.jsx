@@ -1,23 +1,13 @@
-import { useState } from 'react';
+import { useCounter } from '../hooks/useCounter';
 
 const QuantityIncrement = () => {
-	const [count, setCount] = useState(1);
-
-	function handleQuantityIncrease(e) {
-		e.preventDefault();
-		setCount((prev) => prev + 1);
-	}
-
-	function handleQuantityDecrease(e) {
-		e.preventDefault();
-		count !== 0 ? setCount((prev) => prev - 1) : 0;
-	}
+	const { count, increment, decrement, handleQuantityChange } = useCounter();
 	return (
 		<form className="flex flex-col justify-center items-center gap-2">
 			<div className="flex gap-2">
 				<button
 					className="decrease bg-green-600 h-6 w-6 rounded-full text-white"
-					onClick={handleQuantityDecrease}
+					onClick={decrement}
 				>
 					-
 				</button>
@@ -25,12 +15,12 @@ const QuantityIncrement = () => {
 					type="number"
 					name="quantity "
 					value={count}
-					onChange={handleQuantityIncrease}
+					onChange={handleQuantityChange}
 					className="w-[30px] border text-center"
 				/>
 				<button
 					className="increase bg-green-600 h-6 w-6 rounded-full text-white"
-					onClick={handleQuantityIncrease}
+					onClick={increment}
 				>
 					+
 				</button>

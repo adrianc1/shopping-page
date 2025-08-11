@@ -10,7 +10,7 @@ const Home = () => {
 			<div>hey come in and buy our junk!</div>
 			<Link to="shop">
 				<button className="border p-2 rounded-xl self-center bg-blue-500">
-					Shop Now!
+					Shop Now
 				</button>
 			</Link>
 		</div>
