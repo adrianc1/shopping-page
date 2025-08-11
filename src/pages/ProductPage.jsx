@@ -10,13 +10,11 @@ const ProductPage = () => {
 
 	const { product, error, loading } = useSingleProduct(id);
 
-	console.log(error);
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>A network error was encountered</p>;
 
 	return (
 		<div className="flex flex-col items-center mt-4">
-			<h1>heyyooo</h1>
 			<div className="self-start ml-12 mb-4">
 				<BackToShopBtn />
 			</div>
