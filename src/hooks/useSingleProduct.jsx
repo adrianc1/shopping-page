@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useSingleProduct = ({ id }) => {
+const useSingleProduct = (id) => {
 	const [product, setProduct] = useState(null);
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(true);

@@ -13,7 +13,10 @@ const useAllProducts = () => {
 				}
 				return response.json();
 			})
-			.then((response) => setAllProducts(response))
+			.then((response) => {
+				setAllProducts(response);
+				console.log(response);
+			})
 			.catch((error) => setError(error))
 			.finally(() => setLoading(false));
 	}, []);
