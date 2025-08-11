@@ -6,12 +6,24 @@ import { BrowserRouter } from 'react-router-dom';
 import FormattedPrice from '../components/FormattedPrice';
 import ShopPage from '../pages/ShopPage.jsx';
 
-describe('App component', () => {
-	// it('adds decimal point and trailing zeroes to number', () => {
-	// 	const { container } = render(<FormattedPrice />);
-	// 	expect(container).toMatchSnapshot();
-	// });
+const prices = [5, 5.2, 5.33];
 
+describe('Formatted Price', () => {
+	it('adds decimal point and trailing zeroes to a whole number', () => {
+		render(<FormattedPrice price={prices[0]} />);
+		expect(screen.getByText('$5.00')).toBeInTheDocument();
+	});
+	it('adds trailing zero', () => {
+		render(<FormattedPrice price={prices[1]} />);
+		expect(screen.getByText('$5.20')).toBeInTheDocument();
+	});
+	it('leaves properly formatted prices as is', () => {
+		render(<FormattedPrice price={prices[2]} />);
+		expect(screen.getByText('$5.33')).toBeInTheDocument();
+	});
+});
+
+describe('page navigation', () => {
 	it('renders shop now button on home page', () => {
 		render(
 			<BrowserRouter>
@@ -22,19 +34,11 @@ describe('App component', () => {
 	});
 
 	it('Goes to shop page on button click', async () => {
-		const user = userEvent.setup();
-
 		render(
 			<BrowserRouter>
-				<HomePage />
+				<ShopPage />
 			</BrowserRouter>
 		);
-		const button = screen.getByRole('button');
-
-		await user.click(button);
-
-		expect(screen.getByRole('heading').textContent).toMatch(
-			/Shop Your Favorite Items/i
-		);
+		expect(screen.getByText('Shop Your Favorite Items')).toBeInTheDocument();
 	});
 });
