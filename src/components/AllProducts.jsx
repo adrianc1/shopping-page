@@ -27,7 +27,7 @@ const Products = () => {
 								<span className="truncate font-bold">{item.title}</span>
 								<FormattedPrice price={item.price} />
 								<div className="self-end flex flex-col gap-4 w-auto mr-4">
-									<AddToCart />
+									<AddToCart id={item.id} product={item} />
 								</div>
 							</div>
 						</li>
