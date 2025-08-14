@@ -6,12 +6,19 @@ const PageLayout = () => {
 	const [cart, setCart] = useState([]);
 
 	const handleAddToCart = (product) => {
-		setCart([...cart, product]);
+		const item = cart.find((p) => p.id === product.id);
+		if (item) {
+			item.quantity++;
+			console.log(item.quantity);
+		} else {
+			product = { ...product, quantity: 1 };
+			setCart([...cart, product]);
+		}
 	};
+	console.log(cart);
 
-	const removeFromCart = (item) => {
+	const removeFromCart = (item) =>
 		setCart(cart.filter((p) => p.id !== item.id));
-	};
 
 	return (
 		<div className="w-full flex flex-col min-h-screen bg-cover bg-center">
