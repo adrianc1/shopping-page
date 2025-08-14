@@ -1,7 +1,8 @@
 import ViewCartBtn from './ViewCartBtn';
 import { NavLink } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ cart }) => {
+	console.log();
 	return (
 		<nav className="flex w-full items-center justify-between px-6 py-6 text-primary font-bold bg-[#fff3e0]">
 			<span>logo</span>
@@ -12,7 +13,7 @@ const Navbar = () => {
 				<NavLink to="shop">
 					<li>Shopping</li>
 				</NavLink>
-				<ViewCartBtn />
+				<ViewCartBtn cart={cart.length} />
 			</ul>
 		</nav>
 	);

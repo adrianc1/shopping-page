@@ -1,5 +1,4 @@
-import products from '../data/mockData';
-import { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import FormattedPrice from './FormattedPrice';
 import AddToCartButton from './AddToCartButton';
 import { Link } from 'react-router-dom';
@@ -7,7 +6,8 @@ import useAllProducts from '../hooks/useAllProducts';
 
 const Products = () => {
 	const { allProducts, error, loading } = useAllProducts();
-	const [cart, setCart] = useState([]);
+	const { cart, setCart, handleAddToCart } = useOutletContext();
+
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>{error}</p>;
 
@@ -29,10 +29,11 @@ const Products = () => {
 								<FormattedPrice price={item.price} />
 								<div className="self-end flex flex-col gap-4 w-auto mr-4">
 									<AddToCartButton
-										id={item.id}
-										product={item}
-										setCart={setCart}
-										cart={cart}
+										handleAddToCart={(e) => {
+											e.preventDefault();
+											handleAddToCart(item);
+											console.log(cart);
+										}}
 									/>
 								</div>
 							</div>
