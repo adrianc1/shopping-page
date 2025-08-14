@@ -1,4 +1,5 @@
 import BackHomeBtn from '../components/BackHomeBtn';
+import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import AllProducts from '../components/AllProducts';
 

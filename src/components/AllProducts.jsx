@@ -1,12 +1,13 @@
 import products from '../data/mockData';
+import { useState } from 'react';
 import FormattedPrice from './FormattedPrice';
-import AddToCart from './AddToCart';
+import AddToCartButton from './AddToCartButton';
 import { Link } from 'react-router-dom';
 import useAllProducts from '../hooks/useAllProducts';
 
 const Products = () => {
 	const { allProducts, error, loading } = useAllProducts();
-
+	const [cart, setCart] = useState([]);
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>{error}</p>;
 
@@ -27,7 +28,12 @@ const Products = () => {
 								<span className="truncate font-bold">{item.title}</span>
 								<FormattedPrice price={item.price} />
 								<div className="self-end flex flex-col gap-4 w-auto mr-4">
-									<AddToCart id={item.id} product={item} />
+									<AddToCartButton
+										id={item.id}
+										product={item}
+										setCart={setCart}
+										cart={cart}
+									/>
 								</div>
 							</div>
 						</li>

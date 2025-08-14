@@ -15,7 +15,7 @@ const useAllProducts = () => {
 			})
 			.then((response) => {
 				setAllProducts(response);
-				console.log(response);
+				// console.log(response);
 			})
 			.catch((error) => setError(error))
 			.finally(() => setLoading(false));
