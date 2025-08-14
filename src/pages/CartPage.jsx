@@ -3,7 +3,7 @@ import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 import BackToShopBtn from '../components/BackToShopBtn';
 const Cart = () => {
-	const { cart } = useOutletContext();
+	const { cart, setCart, removeFromCart } = useOutletContext();
 
 	return (
 		<div className="w-full flex flex-col justify-start items-start border-2">
@@ -15,7 +15,15 @@ const Cart = () => {
 						return (
 							<li key={item.id} className="flex border w-full justify-between">
 								<div className="flex">
-									<button className="text-red-500 font-bold px-4">X</button>
+									<button
+										className="text-red-500 font-bold px-4"
+										onClick={(e) => {
+											e.preventDefault();
+											setCart(cart.filter((p) => p.id !== item.id));
+										}}
+									>
+										X
+									</button>
 									<div className="">{item.title}</div>
 								</div>
 								<div className="px-4">{item.price}</div>
