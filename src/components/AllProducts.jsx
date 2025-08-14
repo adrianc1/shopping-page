@@ -6,7 +6,7 @@ import useAllProducts from '../hooks/useAllProducts';
 
 const Products = () => {
 	const { allProducts, error, loading } = useAllProducts();
-	const { cart, setCart, handleAddToCart } = useOutletContext();
+	const { cart, handleAddToCart } = useOutletContext();
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>{error}</p>;

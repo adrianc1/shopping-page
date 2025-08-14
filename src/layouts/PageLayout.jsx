@@ -9,10 +9,8 @@ const PageLayout = () => {
 		setCart([...cart, product]);
 	};
 
-	const removeFromCart = (id) => {
-		cart.map((item) => {
-			setCart(cart.filter((p) => p.id !== item.id));
-		});
+	const removeFromCart = (item) => {
+		setCart(cart.filter((p) => p.id !== item.id));
 	};
 
 	return (

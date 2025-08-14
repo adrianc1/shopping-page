@@ -1,9 +1,9 @@
-import BackHomeBtn from '../components/BackHomeBtn';
 import { useOutletContext } from 'react-router-dom';
-import { useState } from 'react';
+import Subtotal from '../components/Subtotal';
+import FormattedPrice from '../components/FormattedPrice';
 import BackToShopBtn from '../components/BackToShopBtn';
 const Cart = () => {
-	const { cart, setCart, removeFromCart } = useOutletContext();
+	const { cart, removeFromCart } = useOutletContext();
 
 	return (
 		<div className="w-full flex flex-col justify-start items-start border-2">
@@ -19,19 +19,23 @@ const Cart = () => {
 										className="text-red-500 font-bold px-4"
 										onClick={(e) => {
 											e.preventDefault();
-											setCart(cart.filter((p) => p.id !== item.id));
+											removeFromCart(item);
 										}}
 									>
 										X
 									</button>
 									<div className="">{item.title}</div>
 								</div>
-								<div className="px-4">{item.price}</div>
+
+								<div className="px-4">
+									<FormattedPrice price={item.price} />
+								</div>
 							</li>
 						);
 					})}
 				</ul>
 			</div>
+			<Subtotal cart={cart} />
 		</div>
 	);
 };
