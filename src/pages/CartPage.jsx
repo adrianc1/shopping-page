@@ -27,8 +27,9 @@ const Cart = () => {
 									<div className="">{item.title}</div>
 								</div>
 
+								<div className="">qty: {item.quantity}</div>
 								<div className="px-4">
-									<FormattedPrice price={item.price} />
+									<FormattedPrice price={item.price * item.quantity} />
 								</div>
 							</li>
 						);
