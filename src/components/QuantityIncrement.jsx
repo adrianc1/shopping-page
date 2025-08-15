@@ -9,7 +9,10 @@ const QuantityIncrement = ({ itemID, product }) => {
 			<div className="flex gap-2">
 				<button
 					className="decrease bg-green-600 h-6 w-6 rounded-full text-white"
-					onClick={decrementQuantity}
+					onClick={(e) => {
+						e.preventDefault();
+						decrementQuantity(product);
+					}}
 				>
 					-
 				</button>
@@ -17,13 +20,16 @@ const QuantityIncrement = ({ itemID, product }) => {
 					type="number"
 					name="quantity "
 					value={itemInCart?.quantity || 0}
+					onClick={(e) => e.preventDefault()}
 					onChange={(e) => {
 						const newQty = Number(e.target.value);
-						if (newQty > 0)
-							incrementQuantity({
+						if (newQty > 0) {
+							const p = {
 								...product,
 								quantity: newQty,
-							});
+							};
+							incrementQuantity(p);
+						}
 					}}
 					className="w-[30px] border text-center"
 				/>

@@ -7,7 +7,6 @@ const PageLayout = () => {
 	const [cart, setCart] = useState([]);
 
 	const incrementQuantity = (product) => {
-		console.log(product);
 		setCart(
 			cart.map((p) => {
 				return p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p;
@@ -18,7 +17,11 @@ const PageLayout = () => {
 	const decrementQuantity = (product) => {
 		setCart(
 			cart.map((p) => {
-				return p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p;
+				if (p.id === product.id && p.quantity > 0) {
+					return p.id === product.id ? { ...p, quantity: p.quantity - 1 } : p;
+				} else {
+					return { ...p, quantity: 0 };
+				}
 			})
 		);
 	};
