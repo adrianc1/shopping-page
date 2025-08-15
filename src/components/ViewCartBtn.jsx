@@ -1,12 +1,7 @@
 import { ShoppingCart } from 'lucide-react';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const ViewCartBtn = ({ cart }) => {
-	// let count = 0;
-	// useEffect(() => {
-	// 	count = cart.length;
-	// }, [cart]);
 	return (
 		<Link
 			to="cart"
