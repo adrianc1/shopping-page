@@ -3,6 +3,7 @@ import FormattedPrice from './FormattedPrice';
 import AddToCartButton from './AddToCartButton';
 import { Link } from 'react-router-dom';
 import useAllProducts from '../hooks/useAllProducts';
+import QuantityIncrement from './QuantityIncrement';
 
 const Products = () => {
 	const { allProducts, error, loading } = useAllProducts();
@@ -28,13 +29,17 @@ const Products = () => {
 								<span className="truncate font-bold">{item.title}</span>
 								<FormattedPrice price={item.price} />
 								<div className="self-end flex flex-col gap-4 w-auto mr-4">
-									<AddToCartButton
-										handleAddToCart={(e) => {
-											e.preventDefault();
-											handleAddToCart(item);
-											console.log(cart);
-										}}
-									/>
+									{cart.some((cartItem) => cartItem.id === item.id) ? (
+										<QuantityIncrement />
+									) : (
+										<AddToCartButton
+											handleAddToCart={(e) => {
+												e.preventDefault();
+												handleAddToCart(item);
+												console.log(cart);
+											}}
+										/>
+									)}
 								</div>
 							</div>
 						</li>
