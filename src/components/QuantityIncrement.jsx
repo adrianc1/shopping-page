@@ -1,33 +1,45 @@
-import { useCounter } from '../hooks/useCounter';
+import { useOutletContext } from 'react-router-dom';
 
-const QuantityIncrement = () => {
-	const { count, increment, decrement, handleQuantityChange } = useCounter();
+const QuantityIncrement = ({ itemID, product }) => {
+	const { cart, incrementQuantity, decrementQuantity } = useOutletContext();
+
+	const itemInCart = cart.find((p) => p.id === itemID);
 	return (
 		<form className="flex flex-col justify-center items-center gap-2">
 			<div className="flex gap-2">
 				<button
 					className="decrease bg-green-600 h-6 w-6 rounded-full text-white"
-					onClick={decrement}
+					onClick={decrementQuantity}
 				>
 					-
 				</button>
 				<input
 					type="number"
 					name="quantity "
-					value={count}
-					onChange={handleQuantityChange}
+					value={itemInCart?.quantity || 0}
+					onChange={(e) => {
+						const newQty = Number(e.target.value);
+						if (newQty > 0)
+							incrementQuantity({
+								...product,
+								quantity: newQty,
+							});
+					}}
 					className="w-[30px] border text-center"
 				/>
 				<button
 					className="increase bg-green-600 h-6 w-6 rounded-full text-white"
-					onClick={increment}
+					onClick={(e) => {
+						e.preventDefault();
+						incrementQuantity(product);
+					}}
 				>
 					+
 				</button>
 			</div>
-			<button className="bg-green-600 rounded-2xl px-4 py-1 text-white">
+			{/* <button className="bg-green-600 rounded-2xl px-4 py-1 text-white">
 				Add To Cart
-			</button>
+			</button> */}
 		</form>
 	);
 };

@@ -30,13 +30,7 @@ const Products = () => {
 								<FormattedPrice price={item.price} />
 								<div className="self-end flex flex-col gap-4 w-auto mr-4">
 									{cart.some((cartItem) => cartItem.id === item.id) ? (
-										<AddToCartButton
-											handleAddToCart={(e) => {
-												e.preventDefault();
-												handleAddToCart(item);
-												console.log(cart);
-											}}
-										/>
+										<QuantityIncrement product={item} itemID={item.id} />
 									) : (
 										<AddToCartButton
 											handleAddToCart={(e) => {
