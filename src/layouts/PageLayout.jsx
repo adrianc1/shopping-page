@@ -6,16 +6,20 @@ const PageLayout = () => {
 	const [cart, setCart] = useState([]);
 
 	const handleAddToCart = (product) => {
-		const item = cart.find((p) => p.id === product.id);
-		if (item) {
-			item.quantity++;
-			console.log(item.quantity);
+		const isItemInCart = cart.find((p) => p.id === product.id);
+		if (isItemInCart) {
+			setCart(
+				cart.map((p) => {
+					return p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p;
+				})
+			);
 		} else {
 			product = { ...product, quantity: 1 };
+
 			setCart([...cart, product]);
 		}
 	};
-	console.log(cart);
+	console.log('cart', cart);
 
 	const removeFromCart = (item) =>
 		setCart(cart.filter((p) => p.id !== item.id));
