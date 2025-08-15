@@ -16,13 +16,13 @@ const PageLayout = () => {
 
 	const decrementQuantity = (product) => {
 		setCart(
-			cart.map((p) => {
-				if (p.id === product.id && p.quantity > 0) {
-					return p.id === product.id ? { ...p, quantity: p.quantity - 1 } : p;
-				} else {
-					return { ...p, quantity: 0 };
-				}
-			})
+			cart
+				.map((p) =>
+					p.id === product.id
+						? { ...p, quantity: Math.max(0, p.quantity - 1) }
+						: p
+				)
+				.filter((p) => p.quantity > 0)
 		);
 	};
 
