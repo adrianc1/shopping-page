@@ -30,7 +30,7 @@ const ProductPage = () => {
 					<span className="font-bold">{product.title}</span>
 					<span className="my-2">{product.description}</span>
 					<FormattedPrice price={product.price} />
-					<QuantityIncrement />
+					<QuantityIncrement product={product} itemID={product.id} />
 					<span>{product.rating.rate} *</span>
 				</div>
 			</li>

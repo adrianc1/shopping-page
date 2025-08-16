@@ -43,9 +43,6 @@ const QuantityIncrement = ({ itemID, product }) => {
 					+
 				</button>
 			</div>
-			{/* <button className="bg-green-600 rounded-2xl px-4 py-1 text-white">
-				Add To Cart
-			</button> */}
 		</form>
 	);
 };
