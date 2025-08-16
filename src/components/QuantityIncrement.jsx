@@ -1,14 +1,15 @@
 import { useOutletContext } from 'react-router-dom';
 
 const QuantityIncrement = ({ itemID, product }) => {
-	const { cart, incrementQuantity, decrementQuantity } = useOutletContext();
+	const { cart, incrementQuantity, decrementQuantity, handleUpdateQuantity } =
+		useOutletContext();
 
 	const itemInCart = cart.find((p) => p.id === itemID);
 	return (
 		<form className="flex flex-col justify-center items-center gap-2">
 			<div className="flex gap-2">
 				<button
-					className="decrease bg-green-600 h-6 w-6 rounded-full text-white"
+					className="decrease bg-green-600 h-6 w-6 rounded-full text-white cursor-pointer"
 					onClick={(e) => {
 						e.preventDefault();
 						decrementQuantity(product);
@@ -23,18 +24,12 @@ const QuantityIncrement = ({ itemID, product }) => {
 					onClick={(e) => e.preventDefault()}
 					onChange={(e) => {
 						const newQty = Number(e.target.value);
-						if (newQty > 0) {
-							const p = {
-								...product,
-								quantity: newQty,
-							};
-							incrementQuantity(p);
-						}
+						handleUpdateQuantity(product, newQty);
 					}}
-					className="w-[30px] border text-center"
+					className="w-[50px] rounded border text-center"
 				/>
 				<button
-					className="increase bg-green-600 h-6 w-6 rounded-full text-white"
+					className="increase bg-green-600 h-6 w-6 rounded-full text-white cursor-pointer"
 					onClick={(e) => {
 						e.preventDefault();
 						incrementQuantity(product);

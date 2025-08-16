@@ -6,6 +6,14 @@ import Footer from '../components/Footer';
 const PageLayout = () => {
 	const [cart, setCart] = useState([]);
 
+	const handleUpdateQuantity = (product, value) => {
+		setCart(
+			cart.map((p) => {
+				return p.id === product.id ? { ...p, quantity: value } : p;
+			})
+		);
+	};
+
 	const incrementQuantity = (product) => {
 		setCart(
 			cart.map((p) => {
@@ -51,6 +59,7 @@ const PageLayout = () => {
 						removeFromCart,
 						incrementQuantity,
 						decrementQuantity,
+						handleUpdateQuantity,
 					}}
 				/>
 			</main>
