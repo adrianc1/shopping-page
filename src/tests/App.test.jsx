@@ -1,14 +1,39 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import HomePage from '../pages/HomePage.jsx';
 import { BrowserRouter } from 'react-router-dom';
 import FormattedPrice from '../components/FormattedPrice';
 import ShopPage from '../pages/ShopPage.jsx';
+import QuantityIncrement from '../components/QuantityIncrement.jsx';
 
-const prices = [5, 5.2, 5.33];
+vi.mock('react-router-dom', async (importOriginal) => {
+	const actual = await importOriginal();
+	return {
+		...actual,
+		useOutletContext: () => ({
+			cart: [{ id: 1, quantity: 2 }],
+			incrementQuantity: vi.fn(),
+			decrementQuantity: vi.fn(),
+			handleUpdateQuantity: vi.fn(),
+		}),
+	};
+});
+
+describe('increment quantity', () => {
+	const itemID = 1;
+	const product = { id: 1, quantity: 0 };
+	render(<QuantityIncrement itemID={itemID} product={product} />);
+	it('renders increment, decrement buttons, and input', () => {
+		screen.getByText('-');
+	});
+	it('adds 1 unit to the quantity', () => {});
+	it('subtracts 1 unit to the quantity', () => {});
+});
 
 describe('Formatted Price', () => {
+	const prices = [5, 5.2, 5.33];
+
 	it('adds decimal point and trailing zeroes to a whole number', () => {
 		render(<FormattedPrice price={prices[0]} />);
 		expect(screen.getByText('$5.00')).toBeInTheDocument();
