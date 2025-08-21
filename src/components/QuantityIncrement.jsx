@@ -32,6 +32,7 @@ const QuantityIncrement = ({ itemID, product }) => {
 					className="increase bg-green-600 h-6 w-6 rounded-full text-white cursor-pointer"
 					onClick={(e) => {
 						e.preventDefault();
+						console.log('yooo');
 						incrementQuantity(product);
 					}}
 				>

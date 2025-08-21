@@ -8,12 +8,16 @@ import Footer from '../components/Footer';
 function cartReducer(cart, action) {
 	switch (action.type) {
 		case 'delete': {
-			console.log(cart);
 			return cart.filter((t) => t.id !== action.id);
 		}
 		case 'added': {
-			console.log('i run roo');
-			return [...cart, action.product];
+			const prd = { ...action.product, quantity: 1 };
+			return [...cart, prd];
+		}
+		case 'increment': {
+			return cart.map((p) => {
+				return p.id === action.id ? { ...p, quantity: p.quantity + 1 } : p;
+			});
 		}
 		default: {
 			throw Error('Unknown action' + action.type);
@@ -40,7 +44,6 @@ const PageLayout = () => {
 		dispatch({
 			type: 'added',
 			product: product,
-			qty: 1,
 		});
 		// const isItemInCart = cart.find((p) => p.id === product.id);
 
@@ -60,13 +63,12 @@ const PageLayout = () => {
 	// 	);
 	// };
 
-	// const incrementQuantity = (product) => {
-	// 	setCart(
-	// 		cart.map((p) => {
-	// 			return p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p;
-	// 		})
-	// 	);
-	// };
+	const incrementQuantity = (product) => {
+		dispatch({
+			type: 'increment',
+			id: product.id,
+		});
+	};
 
 	// const decrementQuantity = (product) => {
 	// 	setCart(
@@ -89,7 +91,7 @@ const PageLayout = () => {
 						cart,
 						handleAddToCart,
 						removeFromCart,
-						// incrementQuantity,
+						incrementQuantity,
 						// decrementQuantity,
 						// handleUpdateQuantity,
 						dispatch,
