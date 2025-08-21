@@ -31,7 +31,7 @@ const PageLayout = () => {
 	const removeFromCart = (item) => {
 		dispatch({
 			type: 'delete',
-			id: item,
+			id: item.id,
 		});
 	};
 
