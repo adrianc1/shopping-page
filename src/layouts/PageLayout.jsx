@@ -26,6 +26,11 @@ function cartReducer(cart, action) {
 				})
 				.filter((p) => p.quantity > 0);
 		}
+		case 'update': {
+			return cart.map((p) =>
+				p.id === action.id ? { ...p, quantity: action.value } : p
+			);
+		}
 		default: {
 			throw Error('Unknown action' + action.type);
 		}
@@ -51,13 +56,18 @@ const PageLayout = () => {
 		});
 	};
 
-	// const handleUpdateQuantity = (product, value) => {
-	// 	setCart(
-	// 		cart.map((p) => {
-	// 			return p.id === product.id ? { ...p, quantity: value } : p;
-	// 		})
-	// 	);
-	// };
+	const handleUpdateQuantity = (product, value) => {
+		dispatch({
+			type: 'update',
+			id: product.id,
+			value: value,
+		});
+		// setCart(
+		// 	cart.map((p) => {
+		// 		return p.id === product.id ? { ...p, quantity: value } : p;
+		// 	})
+		// );
+	};
 
 	const incrementQuantity = (product) => {
 		dispatch({
@@ -71,15 +81,6 @@ const PageLayout = () => {
 			type: 'decrement',
 			id: product.id,
 		});
-		// setCart(
-		// 	cart
-		// 		.map((p) =>
-		// 			p.id === product.id
-		// 				? { ...p, quantity: Math.max(0, p.quantity - 1) }
-		// 				: p
-		// 		)
-		// 		.filter((p) => p.quantity > 0)
-		// );
 	};
 
 	return (
@@ -93,8 +94,7 @@ const PageLayout = () => {
 						removeFromCart,
 						incrementQuantity,
 						decrementQuantity,
-						// handleUpdateQuantity,
-						dispatch,
+						handleUpdateQuantity,
 					}}
 				/>
 			</main>
