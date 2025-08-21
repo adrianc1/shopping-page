@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import { useReducer } from 'react';
-
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -8,7 +6,7 @@ import Footer from '../components/Footer';
 function cartReducer(cart, action) {
 	switch (action.type) {
 		case 'delete': {
-			return cart.filter((t) => t.id !== action.id);
+			return cart.filter((p) => p.id !== action.id);
 		}
 		case 'added': {
 			const prd = { ...action.product, quantity: 1 };
@@ -19,16 +17,22 @@ function cartReducer(cart, action) {
 				return p.id === action.id ? { ...p, quantity: p.quantity + 1 } : p;
 			});
 		}
+		case 'decrement': {
+			return cart
+				.map((p) => {
+					return p.id === action.id
+						? { ...p, quantity: Math.max(0, p.quantity - 1) }
+						: p;
+				})
+				.filter((p) => p.quantity > 0);
+		}
 		default: {
 			throw Error('Unknown action' + action.type);
 		}
 	}
 }
 
-const initialCart = [];
-
 const PageLayout = () => {
-	// const [cart, setCart] = useState([]);
 	const [cart, dispatch] = useReducer(cartReducer, initialCart);
 
 	// Remove Item from cart
@@ -45,14 +49,6 @@ const PageLayout = () => {
 			type: 'added',
 			product: product,
 		});
-		// const isItemInCart = cart.find((p) => p.id === product.id);
-
-		// if (isItemInCart) {
-		// 	incrementQuantity(product);
-		// } else {
-		// 	product = { ...product, quantity: 1 };
-		// 	setCart([...cart, product]);
-		// }
 	};
 
 	// const handleUpdateQuantity = (product, value) => {
@@ -70,17 +66,21 @@ const PageLayout = () => {
 		});
 	};
 
-	// const decrementQuantity = (product) => {
-	// 	setCart(
-	// 		cart
-	// 			.map((p) =>
-	// 				p.id === product.id
-	// 					? { ...p, quantity: Math.max(0, p.quantity - 1) }
-	// 					: p
-	// 			)
-	// 			.filter((p) => p.quantity > 0)
-	// 	);
-	// };
+	const decrementQuantity = (product) => {
+		dispatch({
+			type: 'decrement',
+			id: product.id,
+		});
+		// setCart(
+		// 	cart
+		// 		.map((p) =>
+		// 			p.id === product.id
+		// 				? { ...p, quantity: Math.max(0, p.quantity - 1) }
+		// 				: p
+		// 		)
+		// 		.filter((p) => p.quantity > 0)
+		// );
+	};
 
 	return (
 		<div className="w-full flex flex-col min-h-screen bg-cover bg-center">
@@ -92,7 +92,7 @@ const PageLayout = () => {
 						handleAddToCart,
 						removeFromCart,
 						incrementQuantity,
-						// decrementQuantity,
+						decrementQuantity,
 						// handleUpdateQuantity,
 						dispatch,
 					}}
@@ -102,5 +102,7 @@ const PageLayout = () => {
 		</div>
 	);
 };
+
+const initialCart = [];
 
 export default PageLayout;
