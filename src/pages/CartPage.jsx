@@ -3,7 +3,7 @@ import Subtotal from '../components/Subtotal';
 import FormattedPrice from '../components/FormattedPrice';
 import BackToShopBtn from '../components/BackToShopBtn';
 const Cart = () => {
-	const { cart, removeFromCart } = useOutletContext();
+	const { cart, removeFromCart, dispatch } = useOutletContext();
 
 	return (
 		<div className="w-full flex flex-col justify-start items-start border-2">
