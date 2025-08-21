@@ -1,41 +1,8 @@
 import { useReducer } from 'react';
+import cartReducer from '../hooks/cartReducer';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-
-function cartReducer(cart, action) {
-	switch (action.type) {
-		case 'delete': {
-			return cart.filter((p) => p.id !== action.id);
-		}
-		case 'added': {
-			const prd = { ...action.product, quantity: 1 };
-			return [...cart, prd];
-		}
-		case 'increment': {
-			return cart.map((p) => {
-				return p.id === action.id ? { ...p, quantity: p.quantity + 1 } : p;
-			});
-		}
-		case 'decrement': {
-			return cart
-				.map((p) => {
-					return p.id === action.id
-						? { ...p, quantity: Math.max(0, p.quantity - 1) }
-						: p;
-				})
-				.filter((p) => p.quantity > 0);
-		}
-		case 'update': {
-			return cart.map((p) =>
-				p.id === action.id ? { ...p, quantity: action.value } : p
-			);
-		}
-		default: {
-			throw Error('Unknown action' + action.type);
-		}
-	}
-}
 
 const PageLayout = () => {
 	const [cart, dispatch] = useReducer(cartReducer, initialCart);
@@ -56,19 +23,16 @@ const PageLayout = () => {
 		});
 	};
 
+	// manually update quantity
 	const handleUpdateQuantity = (product, value) => {
 		dispatch({
 			type: 'update',
 			id: product.id,
 			value: value,
 		});
-		// setCart(
-		// 	cart.map((p) => {
-		// 		return p.id === product.id ? { ...p, quantity: value } : p;
-		// 	})
-		// );
 	};
 
+	// increment quantity by 1 unit
 	const incrementQuantity = (product) => {
 		dispatch({
 			type: 'increment',
@@ -76,6 +40,7 @@ const PageLayout = () => {
 		});
 	};
 
+	// decrement quantity by 1 unit
 	const decrementQuantity = (product) => {
 		dispatch({
 			type: 'decrement',
